@@ -4,6 +4,7 @@ import { Profile } from "@/components/sections/Profile";
 import { Reels } from "@/components/sections/Reels";
 import { Gallery } from "@/components/sections/Gallery";
 import { Credits } from "@/components/sections/Credits";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Gallery />
         <Credits />
       </main>
+      <Contact />
     </div>
   );
 }
