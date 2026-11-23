@@ -21,8 +21,8 @@ export const profile = {
   headline: "A versatile actor with exceptional physical range.",
   bio: "Over a decade of experience across 100+ international projects. Athletic, agile and precise in movement, with a strong martial arts background — combined with dramatic depth and sharp comedic timing.",
   portrait: {
-    src: "/images/portrait-1356.webp",
-    srcSmall: "/images/portrait-800.webp",
+    src: "/images/portrait-bw-tie/desktop.webp",
+    srcSmall: "/images/portrait-bw-tie/mobile.webp",
     alt: "Roman Stankevych, black-and-white portrait in a dark shirt and tie",
   },
   specs: [
@@ -100,21 +100,26 @@ export const reelGroups: ReelGroup[] = [
 
 export type Photo = { label: string; src: string; thumb: string; position?: string; alt?: string };
 
+function photo(slug: string, label: string, position?: string): Photo {
+  const dir = `/images/gallery/${slug}`;
+  return { label, src: `${dir}/full.webp`, thumb: `${dir}/thumb.webp`, position };
+}
+
 export const gallery: Photo[] = [
-  { label: "Casual · Café", src: "/images/gallery/01.webp", thumb: "/images/gallery/01-thumb.webp" },
-  { label: "Tactical", src: "/images/gallery/02.webp", thumb: "/images/gallery/02-thumb.webp" },
-  { label: "Business Suit", src: "/images/gallery/03.webp", thumb: "/images/gallery/03-thumb.webp" },
-  { label: "Noir · Suit", src: "/images/gallery/04.webp", thumb: "/images/gallery/04-thumb.webp" },
-  { label: "Action · Cave", src: "/images/gallery/05.webp", thumb: "/images/gallery/05-thumb.webp", position: "35% 40%" },
-  { label: "Period · Uniform", src: "/images/gallery/06.webp", thumb: "/images/gallery/06-thumb.webp", position: "45% 30%" },
-  { label: "Character · Window", src: "/images/gallery/07.webp", thumb: "/images/gallery/07-thumb.webp" },
-  { label: "Desert · Coverall", src: "/images/gallery/08.webp", thumb: "/images/gallery/08-thumb.webp" },
-  { label: "Comedy · Character", src: "/images/gallery/09.webp", thumb: "/images/gallery/09-thumb.webp", position: "38% 50%" },
-  { label: "Athletic", src: "/images/gallery/10.webp", thumb: "/images/gallery/10-thumb.webp" },
-  { label: "Character · Tank Top", src: "/images/gallery/11.webp", thumb: "/images/gallery/11-thumb.webp" },
-  { label: "Period · Soldier", src: "/images/gallery/12.webp", thumb: "/images/gallery/12-thumb.webp" },
-  { label: "Gym", src: "/images/gallery/13.webp", thumb: "/images/gallery/13-thumb.webp" },
-  { label: "Casual · Cap", src: "/images/gallery/14.webp", thumb: "/images/gallery/14-thumb.webp" },
+  photo("casual-cafe", "Casual · Café"),
+  photo("tactical-vest", "Tactical"),
+  photo("business-suit", "Business Suit"),
+  photo("noir-suit", "Noir · Suit"),
+  photo("action-cave", "Action · Cave", "35% 40%"),
+  photo("period-uniform", "Period · Uniform", "45% 30%"),
+  photo("character-window", "Character · Window"),
+  photo("desert-coverall", "Desert · Coverall"),
+  photo("comedy-grimace", "Comedy · Character", "38% 50%"),
+  photo("athletic-shirtless", "Athletic"),
+  photo("character-tank-top", "Character · Tank Top"),
+  photo("period-soldier", "Period · Soldier"),
+  photo("gym-hoodie", "Gym"),
+  photo("casual-cap", "Casual · Cap"),
 ];
 
 export type Credit = { project: string; original?: string; role: string; note?: string };

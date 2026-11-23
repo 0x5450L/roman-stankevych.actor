@@ -43,7 +43,7 @@ public/
 - **Text or links** — `src/content/site.ts`.
 - **Add a video** — add `{ title, kind, vimeoId }` to `reelGroups`. `vimeoId` is the number from `vimeo.com/1234567`.
 - **Video presentation / English monologue** — set `vimeoId` and remove `soon: true` on `presentation` or on the `English Monologue` entry.
-- **Gallery photos** — put a full-size and a `-thumb` WebP into `public/images/gallery/` and add an entry to `gallery`.
+- **Gallery photos** — create `public/images/gallery/<slug>/` with `full.webp` (max 2000px) and `thumb.webp` (short side 800px), then add `photo("<slug>", "Label")` to `gallery`.
 - **LinkedIn** — set `links.linkedin`; the header icon appears automatically.
 - **Update the CV** — replace the file in `public/cv/` keeping the same name.
 
