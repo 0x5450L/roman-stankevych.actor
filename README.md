@@ -1,49 +1,57 @@
-# Сайт Романа Станкевича
+# Roman Stankevych — Actor Website
 
-Одностраничный сайт актёра на **Next.js 16** (App Router) + **TypeScript** + **Tailwind CSS 4**.
-Сайт собирается в статические файлы, поэтому сервер и бэкенд не нужны: его можно бесплатно разместить на Cloudflare Pages.
+One-page portfolio for actor Roman Stankevych, built with **Next.js 16** (App Router), **TypeScript** and **Tailwind CSS 4**.
 
-## Как запустить у себя
+The site is exported as plain static files, so it needs no server or backend and is hosted for free on Cloudflare Pages.
 
-Нужен Node.js 20 или новее (`node -v`).
+## Getting started
+
+Requires Node.js 20 or newer.
 
 ```bash
-npm install      # один раз: скачать зависимости в node_modules
-npm run dev      # режим разработки: http://localhost:3000, изменения видны сразу
-npm run build    # собрать готовый сайт в папку out/
-npm run preview  # посмотреть собранный out/ локально
+npm install      # install dependencies into node_modules
+npm run dev      # dev server at http://localhost:3000 with hot reload
+npm run build    # production build into out/
+npm run preview  # serve the built out/ folder locally
 ```
 
-## Где что лежит
+## Project structure
 
 ```
 src/
   app/
-    layout.tsx        общий каркас: <html>, шрифты, SEO-теги
-    page.tsx          главная страница: просто список секций по порядку
-    globals.css       цвета, шрифты, брейкпоинты (дизайн-токены)
+    layout.tsx        root layout: <html>, fonts, SEO metadata
+    page.tsx          the home page: sections in order
+    globals.css       design tokens: colors, fonts, breakpoints
+    icon.svg          favicon
   content/
-    site.ts           ВЕСЬ контент: тексты, ссылки, видео, фильмография
+    site.ts           ALL content: copy, links, videos, photos, credits
   components/
-    sections/         по файлу на каждую секцию страницы
-    video/            плеер Vimeo, который грузится только по клику
-    ui/               кнопки, иконки, контейнер, заголовок секции
-    ShareCvButton.tsx кнопка «Поделиться резюме»
-  lib/vimeo.ts        обложки видео из Vimeo
+    sections/         one file per page section
+    video/            Vimeo player that loads only on click
+    ui/               buttons, icons, container, section heading
+    EmailLink.tsx     mailto link that also copies the address
+    ShareCvButton.tsx native share / copy link for the CV
+  lib/vimeo.ts        Vimeo thumbnails via oEmbed
 public/
-  cv/                 PDF-резюме (отдаётся по ссылке /cv/...)
-  images/             портрет, картинка для превью в соцсетях
+  cv/                 CV PDF, served at /cv/...
+  images/             portrait, gallery, social preview image
 ```
 
-## Частые правки
+## Common edits
 
-- **Поменять текст или ссылку** — `src/content/site.ts`.
-- **Добавить видео** — в `reelGroups` добавить `{ title, kind, vimeoId }`. `vimeoId` — число из ссылки `vimeo.com/1234567`.
-- **Видео-презентация / английский монолог** — у объекта `presentation` или у строки `English Monologue` вписать `vimeoId` и убрать `soon: true`.
-- **Фото в галерею** — положить файлы в `public/images/gallery/` и в массиве `gallery` указать `src: "/images/gallery/имя.webp"`.
-- **LinkedIn** — вписать ссылку в `links.linkedin`, иконка появится сама.
-- **Обновить резюме** — заменить файл в `public/cv/` (имя оставить тем же).
+- **Text or links** — `src/content/site.ts`.
+- **Add a video** — add `{ title, kind, vimeoId }` to `reelGroups`. `vimeoId` is the number from `vimeo.com/1234567`.
+- **Video presentation / English monologue** — set `vimeoId` and remove `soon: true` on `presentation` or on the `English Monologue` entry.
+- **Gallery photos** — put a full-size and a `-thumb` WebP into `public/images/gallery/` and add an entry to `gallery`.
+- **LinkedIn** — set `links.linkedin`; the header icon appears automatically.
+- **Update the CV** — replace the file in `public/cv/` keeping the same name.
 
-## Деплой на Cloudflare Pages
+## Deploy
 
-Build command: `npm run build`, output directory: `out`. После покупки домена поменять `SITE_URL` в `src/app/layout.tsx`.
+Cloudflare Pages project `roman-stankevych` → https://roman-stankevych.pages.dev
+
+1. `npm run build`
+2. Cloudflare dashboard → Workers & Pages → roman-stankevych → Create deployment → upload the `out` folder.
+
+When the custom domain is connected, update `SITE_URL` in `src/app/layout.tsx`.
